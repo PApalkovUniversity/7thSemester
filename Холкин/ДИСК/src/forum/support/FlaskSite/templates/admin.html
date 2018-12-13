@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <h2 style="color: black;">Статистика</h2>
+    <div class="buttons_cont">
+      <div class="button">
+        <a href="{{url_for('auto_park_statistics')}}">Автопарк</a>
+      </div>
+
+      <div class="button">
+        <a href="{{url_for('clients_statistics')}}">Киенты</a>
+      </div>
+
+      <div class="button">
+        <a href="{{url_for('cars_statistics')}}">Автомобили</a>
+      </div>
+
+      <div class="button">
+        <a href="{{url_for('orders')}}">Заказы</a>
+      </div>
+
+      <div class="button">
+        <a href="{{url_for('history_statistics')}}">История</a>
+      </div>
+  </div>
+
+{% endblock %}
+<!--
+<div class="button">
+  <a href="{{url_for('cars_statistics')}}">Автомобили</a>
+</div>
+
+<div class="button">
+  <a href="{{url_for('delete', post_id=article[0])}}">Парк</a>
+</div>
+
+<div class="button">
+  <a href="{{url_for('delete', post_id=article[0])}}">Клиенты</a>
+</div>
+-->

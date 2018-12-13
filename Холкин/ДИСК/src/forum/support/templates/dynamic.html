@@ -1,0 +1,95 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Личный сайт</title>
+	<link href="/static/template.css" rel="stylesheet" type="text/css">
+
+	<script>
+
+		function showLayer(name){
+			document.getElementById(name).style.visibility = "visible";
+		}
+
+		function hideLayer(name){
+			document.getElementById(name).style.visibility = "hidden";
+		}
+
+		function makeWave(name){
+			document.getElementById(name).style.filter = "blur(4px)";
+		}
+
+		function deleteWave(name){
+			document.getElementById(name).style.filter = "none";
+		}
+
+</script>
+</head>
+
+<body>
+	<div class="container" align="center">
+	  <div class="header"><a href="home">ПРИРОДА РОССИИ</a></div>
+
+		<style>
+			#link1
+				{ position: absolute; left: 700px; top: 250px; visibility: hidden; }
+			#link2
+				{ position: absolute; left: 430px; top: 200px; visibility: hidden; }
+			#link3
+				{ position: absolute; left: 1000px; top: 180px; visibility: hidden; }
+		</style>
+
+			<DIV class="small_info_window" ID='link1'>
+				<h2>Байкал</h2>
+					<p>Байкал - самое глубокое озеро в мире (1642 метра). Он занимает первое
+					место в мире среди пресных озер по объему пресной воды (19% мировых
+					запасов). Её больше, чем во всех вместе взятых пяти Великих озерах.
+					Если вдруг на Земле пропадет вся вода, Байкал сможет обеспечивать водой
+					человечество пять лет.</p>
+			</DIV>
+
+			<DIV class="small_info_window" ID='link2'>
+				<h2>Москва</h2>
+					<p>Москва́ (произношение (инф.)) — столица Российской Федерации,
+						город федерального значения, административный центр Центрального
+						федерального округа и центр Московской области, в состав которой не
+						входит. Крупнейший по численности населения город России и её субъект
+						— 12 506 468[2] чел. (2018), самый населённый из городов, полностью
+						расположенных в Европе, входит в первую десятку городов мира по
+						численности населения[5], крупнейший русскоязычный город в мире.
+						Центр Московской городской агломерации.</p>
+			</DIV>
+
+			<DIV class="small_info_window" ID='link3'>
+				<h2>Сахалин</h2>
+					<p>Сахали́н (ранее также Карафуто (яп. 樺太)) — остров у восточного
+						побережья Азии. Входит в состав Сахалинской области. Крупнейший остров
+						России. Омывается Охотским и Японским морями. От материковой Азии
+						отделён Татарским проливом (в самой узкой части — проливе Невельского
+						— имеет ширину 7,3 км и замерзает зимой); от японского острова
+						Хоккайдо — проливом Лаперуза.</p>
+			</DIV>
+
+			<IMG SRC="../static/images/russia.jpg" WIDTH="1100" HEIGHT="auto" BORDER="0" USEMAP="#russia">
+
+			<MAP NAME="russia">
+				<AREA SHAPE="circle" COORDS="680,490,50" HREF="link1.html" onMouseOver="showLayer('link1');"onMouseOut="hideLayer('link1');">
+				<AREA SHAPE="circle" COORDS="150,330,50" HREF="link2.html" onMouseOver="showLayer('link2');" onMouseOut="hideLayer('link2');">
+				<AREA SHAPE="circle" COORDS="980,440,50" HREF="link3.html" onMouseOver="showLayer('link3');" onMouseOut="hideLayer('link3');">
+			</MAP>
+
+			<br/>
+			<div>
+				<h1>Пример работы фильтров</h1>
+				<h3>Наведите на картинку</h3>
+
+				<IMG SRC="../static/images/wave.jpg" WIDTH="450" HEIGHT="auto" id="pic" onMouseOver="makeWave('pic');" onMouseOut="deleteWave('pic');">
+			</div>
+
+	    <h4>&nbsp;</h4>
+	  <div class="footer">
+	    <p><em>Любое копирование материалов с этого сайта запрещено</em></p>
+	  <!-- end .footer --></div>
+	  <!-- end .container --></div>
+</body>
+</html>

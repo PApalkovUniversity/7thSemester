@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="../static/c3.css">
+  <link rel="stylesheet" type="text/css" href="../static/statistics.css">
+	<style>
+	#username {margin: 0px;}
+	.autocomplete-suggestions { border: 1px solid #999; background: #FFF;  }
+	.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+	.autocomplete-selected { background: #F0F0F0; }
+	.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+	.autocomplete-group { padding: 2px 5px; }
+	.autocomplete-group strong {  border-bottom: 1px solid #000; }
+	</style>
+</head>
+<body>
+	<h2>Клиенты</h2>
+	<div id="tabs-panel" style="width:300px;">
+		<div class="tab-button active" data-tab="chart">
+			Chart
+		</div>
+		<div class="tab-button" data-tab="data">
+			Table
+		</div>
+		<div class="tab-button" data-tab="usernames">
+			Usernames
+		</div>
+	</div>
+
+	<div id="tabs">
+		<div class="tab active" id="chart"></div>
+		<div class="tab" id="data">
+			<h3>
+				<a href="{{ url_for('export_clients_excel') }}" target="blank">Скачать Excel</a>
+			</h3>
+
+			<h3>
+				<a href="{{ url_for('export_clients_csv') }}" target="blank">Скачать CSV</a>
+			</h3>
+
+			<input class="search" placeholder="Search" />
+			<table border="1" cellspacing="0" cellpadding="3" width="900">
+				<thead>
+					<tr>
+						<th>
+							<button class="sort" data-sort="Passport">Sort by Passport number</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Driving">Sort by Driving licence</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Surname">Sort by surname</button>
+						</th>
+            <th>
+							<button class="sort" data-sort="Name">Sort by Name</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Midname">Sort by Midname</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Birth date">Sort by Birth date</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="City">Sort by city</button>
+						</th>
+					</tr>
+				</thead>
+				<!-- IMPORTANT, class="list" have to be at tbody -->
+				<tbody class="list"></tbody>
+			</table>
+		</div>
+		<div class="tab" id="usernames">
+			<h2 style="color:black;">Напишите Логин пользователя системы</h2>
+			<form action="{{ url_for('export_client_info') }}" method=post>
+				<input type="text" name="login" id="autocomplete" />
+
+			<p>Фамилия: <span id="surname"></span></p>
+			<p>Имя:	<span id="name"></span></p>
+			<p>Отчество:	<span id="midname"></span></p>
+			<p>Дата рождения: <span id="bdate"></span></p>
+			<p>Номер паспорта: <span id="passport"></span></p>
+			<p>Номер ВУ:	<span id="driving"></span></p>
+			<p>Город: <span id="city"></span></p>
+
+			<dd><input type=submit value=Сохранить><dd>
+			</form>
+
+		</div>
+	</div>
+
+	<script>
+
+    {% autoescape false %}
+	   var data = {{clients_data}};
+    {% endautoescape %}
+
+
+	document.querySelectorAll('.tab-button').forEach(function(element){
+		element.addEventListener('click', function(event){
+			var clickedElement = event.currentTarget
+				hasActiveClass = clickedElement.classList.contains('active')
+			if (!hasActiveClass) {
+				document.querySelectorAll('.tab-button').forEach(function(element){
+					element.classList.remove('active')
+				});
+				clickedElement.classList.add('active')
+
+				document.querySelectorAll('.tab').forEach(function(element){
+					element.classList.remove('active');
+				});
+				var tab = clickedElement.getAttribute('data-tab');
+				document.querySelector('#'+tab).classList.add('active')
+			}
+		});
+	});
+
+	</script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="../static/c3.js"></script>
+    <script>
+    var chart = c3.generate({
+      {% autoescape false %}
+      data: {
+        columns: {{ages_groups}},
+
+      {% endautoescape %}
+
+      type: 'donut',
+        onmouseover: function (d, i) { console.log("onmouseover", d, i, this); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i, this); },
+        onclick: function (d, i) { console.log("onclick", d, i, this); },
+        order: null // set null to disable sort of data. desc is the default.
+      },
+      donut: {
+        title: "Возраст клиентов",
+        width: 80
+      }
+    });
+    </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+	<script>
+
+	var options = {
+		item: "<tr><td><span class='Passport'></span></td><td><span class='Driving'></span></td><td><span class='Surname'></span></td><td><span class='Name'></span></td><td><span class='Midname'></span></td><td><span class='Birth date'></span></td><td><span class='City'></span></td></tr>",
+		valueNames: ['Passport', 'Driving', 'Surname', 'Name', 'Midname', 'Birth date', 'City']
+	};
+
+	var dataList = new List('data', options, data);
+	</script>
+
+	<script src="../static/jquery-2.1.1.js"></script>
+	<script src="../static/jquery.autocomplete.min.js"></script>
+
+	<script>
+
+	{% autoescape false %}
+			var users = {{users_info}};
+
+	{% endautoescape %}
+			$('#autocomplete').autocomplete({
+					minChars: 1,
+					lookup: users,
+					onSelect: function (suggestion) {
+							$('#surname').text(suggestion.data.Surname);
+							$('#name').text(suggestion.data.Name);
+							$('#midname').text(suggestion.data.Midname);
+							$('#bdate').text(suggestion.data.Birthdate);
+							$('#passport').text(suggestion.data.Passport);
+							$('#driving').text(suggestion.data.Driving);
+							$('#city').text(suggestion.data.City);
+					}
+			});
+
+			</script>
+
+
+</body>
+{% endblock %}

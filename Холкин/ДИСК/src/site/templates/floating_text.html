@@ -1,0 +1,46 @@
+<html>
+<head>
+	<script language="JavaScript">
+		var pos = 0;
+		var v1= "visible"
+		var v2= "hidden"
+		function move() {
+		if (pos <= 0) {direction= true; v1="visible";v2= "hidden";}
+		if (pos > 200) {direction= false;v1="hidden";v2="visible";}
+		if (direction) pos++
+		else pos--;
+		document.all['sloj'].style.left= 100 + pos;
+		document.all['sloj2'].style.left=200- pos;
+		document.all['sloj1'].style.left=(200- pos)*1.5;
+		document.all['sloj1'].style.visibility= v1;
+		document.all['sloj2'].style.visibility= v2;
+}
+</script>
+<STYLE TYPE="text/css">
+
+p {
+	color: red;
+	font-size: 20pt;
+}
+
+p1 {
+	color: green;
+	font-size: 20pt;
+}
+
+#sloj
+{position: absolute; left: 0px; top: 10px;z-index = 1;}
+#sloj1
+{position: absolute; left: 0px; top: 50px;z-index=2;}
+#sloj2
+{position: absolute; left: 0px; top: 50px;z-index=0;}
+</STYLE>
+</head>
+<body onLoad="setInterval('move()', 10)">
+<DIV ID='sloj2'><p>Этот текст расположен за картинкой</p></DIV>
+<DIV ID='sloj'><img src="../static/images/lake.jpg" width=160 height=120></DIV>
+<DIV ID='sloj1'><p1>Этот текст расположен перед картинкой</p1></DIV>
+
+<a href="http://localhost:5002/pavel/home"> Назад </a>
+</body>
+</html>

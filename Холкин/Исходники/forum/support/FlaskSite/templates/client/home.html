@@ -1,0 +1,81 @@
+
+<html>
+    <head>
+        <title>CarSharing</title>
+        <link rel="stylesheet" href="../static/style.css">
+        <link href="../static/pnotify/pnotify.custom.min.css" rel="stylesheet">
+        <script src="../static/jquery-2.1.1.js"></script>
+        <script src="../static/pnotify/pnotify.custom.min.js"></script>
+    </head>
+    <body style="background-image: url('../static/img/4.jpg');">
+
+      <div class="page-header-home">
+          <h1><a href="/">CarSharing</a></h1>
+          <h2>Здравствуйте, {{username}}</h2>
+      </div>
+
+      <div class="make_order">
+        <h2 style="color:black;"> Бронирование автомобиля </h2>
+        <form action="{{ url_for('add_clients') }}" method=post class=create>
+          <dl>
+            <dt>Марка</dt>
+            <dd><input type=text size=35 name=surname placeholder="Kia" required></dd>
+
+            <dt>Модель</dt>
+            <dd><input type=text size=35 name=name placeholder="Ceed" required></dd>
+
+            <dt>Начальное время</dt>
+            <dd><input id="start_time" pattern= "\d{4}(-)\d{2}(-)\d{2}" type=text
+              size=35 name=birthdate placeholder="2018-01-01" required></dd>
+
+            <dt>Конечное время</dt>
+            <dd><input id="end_time" pattern= "\d{4}(-)\d{2}(-)\d{2}" type=text
+              size=35 name=birthdate placeholder="2018-02-30" required></dd>
+
+            <script>
+              document.getElementById('start_time').validity.patternMismatch;
+              document.getElementById('end_time').validity.patternMismatch;
+            </script>
+            <br/>
+            <dd><input type=submit value="Отправить"></dd>
+            <br/>
+            <h3>Нравится ли Вам наш сервис?</h3>
+
+            <div class="like_buttons">
+              <button type="button" id="notify1" onclick="notify2()">Да</button>
+              <button type="button" id="notify1" onclick="notify3()">Нет</button>
+            </div>
+
+
+            <br/>
+
+
+
+            <script>
+              function notify2() {
+          			new PNotify({
+          			    title: 'Спасибо за ответ!',
+          			    text: 'Работаем для Вас!',
+          			    type: 'success',
+                    addclass: 'translucent'
+          			});
+          		}
+
+              function notify3() {
+                new PNotify({
+                    title: 'Спасибо за ответ!',
+                    text: 'Мы сделаем все, что бы улучшить качество обслуживания!',
+                    type: 'console.error();',
+                    addclass: 'translucent'
+                });
+              }
+
+            </script>
+
+          </dl>
+        </form>
+      </div>
+      <h4><a href="{{url_for('logout')}}">Выйти</a></h4>
+
+  </body>
+</html>

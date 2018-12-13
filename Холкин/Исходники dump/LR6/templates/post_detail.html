@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="post">
+        <h2>{{ article[1] }}</h2>
+        <p>{{ article[2] }}</p>
+    </div>
+
+    <div class="button">
+      <a href="{{url_for('delete', post_id=article[0])}}">Удалить</a>
+    </div>
+
+    <div class="button">
+      <a href="{{url_for('rewrite', post_id=article[0])}}">Изменить</a>
+    </div>
+
+{% endblock %}

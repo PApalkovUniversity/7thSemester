@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+	<title>List.js example</title>
+	<link rel="stylesheet" type="text/css" href="../static/c3.css">
+  <link rel="stylesheet" type="text/css" href="../static/statistics.css">
+</head>
+<body>
+	<h2>Заказы</h2>
+	<div id="tabs">
+		<div class="tab active" id="data">
+			<input class="search" placeholder="Search" />
+			<table border="1" cellspacing="0" cellpadding="3" width="1100">
+				<thead>
+					<tr>
+						<th>
+							<button class="sort" data-sort="Number">Sort by Number</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Brand">Model</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Model">Sort by Model</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Beginnig">Sort by Beginnig</button>
+						</th>
+            <th>
+							<button class="sort" data-sort="Ending">Sort by Ending</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Confirmed">Sort by Confirmed</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Taken">Sort by Taken</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Driving">Sort by Driving</button>
+						</th>
+					</tr>
+				</thead>
+				<!-- IMPORTANT, class="list" have to be at tbody -->
+				<tbody class="list"></tbody>
+			</table>
+		</div>
+	</div>
+
+	<script>
+
+    {% autoescape false %}
+	   var data = {{orders_data}};
+    {% endautoescape %}
+
+
+	document.querySelectorAll('.tab-button').forEach(function(element){
+		element.addEventListener('click', function(event){
+			var clickedElement = event.currentTarget
+				hasActiveClass = clickedElement.classList.contains('active')
+			if (!hasActiveClass) {
+				document.querySelectorAll('.tab-button').forEach(function(element){
+					element.classList.remove('active')
+				});
+				clickedElement.classList.add('active')
+
+				document.querySelectorAll('.tab').forEach(function(element){
+					element.classList.remove('active');
+				});
+				var tab = clickedElement.getAttribute('data-tab');
+				document.querySelector('#'+tab).classList.add('active')
+			}
+		});
+	});
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+	<script>
+
+
+	var options = {
+		item: "<tr><td><span class='Number'></span><td><span class='Brand'></span></td><td><span class='Model'></span></td><td><span class='Beginnig'></span></td><td><span class='Ending'></span></td><td><span class='Confirmed'></span></td><td><span class='Taken''></span></td><td><span class='Driving''></span></td></tr>",
+		valueNames: ['Number', 'Brand', 'Model', 'Beginnig', 'Ending', 'Confirmed', 'Taken', 'Driving']
+	};
+
+	var dataList = new List('data', options, data);
+	</script>
+</body>
+{% endblock %}

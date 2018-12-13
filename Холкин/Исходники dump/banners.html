@@ -1,0 +1,141 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Личный сайт</title>
+	<link href="template.css" rel="stylesheet" type="text/css">
+	<script src="static/jquery-2.1.1.js"></script>
+	<script src="static/pnotify/pnotify.custom.min.js"></script>
+	<link href="static/pnotify/pnotify.custom.min.css" rel="stylesheet">
+	<link href="static/slick-1.8.0/slick/slick.css" rel="stylesheet">
+	<link href="static/slick-1.8.0/slick/slick-theme.css" rel="stylesheet">
+	<script src="static/jquery-2.1.1.js"></script>
+	<script src="static/slick-1.8.0/slick/slick.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+	  <div class="header">ПРИРОДА РОССИИ</div>
+	  <div class="sidebar1">
+	    <ul class="nav">
+				<li><a href="home.html">Домашняя страница</a></li>
+	      <li><a href="info.html">Информация</a></li>
+	      <li><a href="photos.html">Фото</a></li>
+				<li><a href="dynamic.html">Динамичная страница</a></li>
+				<li><a href="banners.html">Баннеры</a></li>
+				<li><a href="search.html">Поиск</a></li>
+				<li><a href="http://localhost:5003">Серверные скрипты</a></li>
+				<li><a href="http://localhost:5002">Динамическая страница (Заметки)</a></li>
+	    </ul>
+	    <!-- end .sidebar1 --></div>
+	  <div class="content">
+	    <h1>Баннеры</h1>
+	    <p>Несомненно, самым популярным и эффективным видом сетевой рекламы
+				принято считать баннерные показы [3]. Баннер (от англ, banner — знамя) я
+				вляется статичным или анимированным графическим изображением с установленной
+				на него ссылкой, ве- дущей на тот или иной ресурс Сети. Баннерная реклама
+				имеет два стратегических направления: участие в системах баннерного обмена
+				и аренда рекламных площадей. Суть практически всех систем баннерообмена
+				можно понять уже из их названия — об- мен графическими рекламными баннерами.
+				Вы, как владелец или ведущий какого-либо ресурса Интернета, регистрируетесь
+				в такой системе, получаете логин и пароль для ре- дактирования настроек
+				показов и получения статистики, а также готовый код, который необходимо
+				вставить в те страницы, на которых вы хотите видеть рекламу. Помимо всего
+				прочего, вы можете включить в общий баннерообмен и свой баннер (ы). В
+				принципе, это и есть основа системы обмена рекламными баннерами: вы
+				показываете чужие банне- ры у себя на страницах, а ваш баннер(ы) показывают
+				на других ресурсах Сети. Если вас не устраивает участие в бесплатном
+				баннерообмене, который, безусловно, не гаран- тирует, во-первых, 100%-ное
+				достижение вашей целевой аудитории, во-вторых, необ- ходимого количества
+				показов в определенный период времени, можно воспользоваться услугой аренды
+				 рекламной площади. В качестве рекламных площадок в данном случае выступают
+				 наиболее посещаемые и авторитетные интернет-ресурсы.</p>
+
+	    <!-- end .content --></div>
+
+			<h1>Интерактивные баннеры</h1>
+
+			<div class="wrapper" align="center">
+				<div class="good-demo" >
+					<div>
+						<h2><img src="images/1.jpg" /></h2>
+					</div>
+					<div>
+						<h2><img src="images/2.jpg" /></h2>
+					</div>
+					<div>
+						<h2><img src="images/3.jpg" /></h2>
+					</div>
+				</div>
+			</div>
+
+			<script type="text/javascript">
+					$('.good-demo').slick({
+						autoplay: true,
+						autoplaySpeed: 4000,
+						adaptiveheight: true,
+						arrows: false
+					});
+			</script>
+
+			<br/>
+			<h1>Всплывающие баннеры</h1>
+			<dd align="center"><input type=button value="Показать баннер" id="show_banner" onclick="banner()"><dd>
+			<script>
+			function banner() {
+				new PNotify({
+						title: 'Всплывающий баннер',
+						text: 'Вот пример всплывающего баннера',
+						type: 'success',
+						addclass: 'translucent'
+				});
+			}
+			</script>
+
+			<br/>
+			<h1>Проверка введеных значений на примере даты</h1>
+			<form onsubmit="notify();">
+				<dt>Введите любую дату</dt>
+				<dd align="center"><input id="date" type=text
+					size=35 name=birthdate placeholder="2000-01-31" required></dd>
+				<dd align="center"><input type=button value=Проверить id="notify1" onclick="validate()"><dd>
+
+				<script>
+
+					function validate() {
+						var pattern = new RegExp("[0-9]{4}(-)[0-9]{2}(-)[0-9]{2}");
+						var text = document.getElementById("date").value;
+						if (pattern.test(text)) {
+								notify();
+						} else {
+							notifyBad();
+						}
+					}
+
+					function notify() {
+						new PNotify({
+								title: 'Успешно',
+								text: 'Вы ввели корректные данные',
+								type: 'success',
+								addclass: 'translucent'
+						});
+					}
+
+					function notifyBad() {
+						new PNotify({
+								title: 'Неверный формат!',
+								text: 'Введите данные в соответствии с форматом',
+								type: 'console.error();',
+								addclass: 'translucent'
+						});
+					}
+				</script>
+
+			</form>
+
+	  <div class="footer">
+	    <p><em>Любое копирование материалов с этого сайта запрещено</em></p>
+	  <!-- end .footer --></div>
+	  <!-- end .container --></div>
+</body>
+</html>

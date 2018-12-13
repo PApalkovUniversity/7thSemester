@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Личный сайт</title>
+	<link href="/static/template.css" rel="stylesheet" type="text/css">
+	<script>
+
+	UrlYandex="http://www.yandex.ru/yandsearch?rpt=rad&text=";
+	UrlGoogle="http://www.google.ru/search?hl=ru&newwindow=1&q=";
+	Urlmail_ru="http://go.mail.ru/search?fm=1&rf=e.mail.ru&q=";
+	Urlrambler="https://nova.rambler.ru/search?utm_source=head&utm_campaign=self_promo&utm_medium=enter&utm_content=search&_openstat=UmFtYmxlcl9NYWluOzs7&query="
+	Urlyahoo="https://search.yahoo.com/search?p="
+	Urlwolf="https://www.wolframalpha.com/input/?i="
+	Urlwiki="https://ru.wikipedia.org/w/index.php?search="
+	Urlbing="https://www.bing.com/search?q="
+	Urlask="https://www.ask.com/web?q="
+	Urlaol="https://search.aol.com/aol/search?s_chn=prt_bon&q="
+	Urlduck="https://duckduckgo.com/?q="
+	Urlex="http://msxml.excite.com/search/web?fcoid=417&fcop=topnav&fpid=2&om_nextpage=True&q="
+  Urlmirea="https://www.mirea.ru/search/index.php?s=&q="
+
+
+
+	function FindText(Url){
+		var FullUrl=Url+document.find.searchtext.value;
+
+		if (document.find.newwin.checked) {
+			var FindWin=window.open(FullUrl);
+		} else {
+			location.href = FullUrl; }
+		}
+</script>
+</head>
+
+<body>
+	<div class="container">
+	  <div class="header"><a href="home">ПРИРОДА РОССИИ</a></div>
+			<div class="search" align="center">
+				<form name="find">
+					<h1>Поиск</h1> <br>
+					<dd><input class="searchline" type=text size=35 name=searchtext></dd>
+					<input type="checkbox" name="newwin">Открыть в новом окне<br> <br>С помощью поисковой системы:<br >
+
+					<input type="button" value="Yandex" onClick="FindText(UrlYandex)">
+					<input type="button" value="Google" onClick="FindText(UrlGoogle)">
+					<input type="button" value="Mail_ru" onClick="FindText(Urlmail_ru)">
+					<input type="button" value="Rambler" onclick="FindText(Urlrambler)">
+					<input type="button" value="Yahoo" onclick="FindText(Urlyahoo)">
+					<input type="button" value="Wolfram|Alpha" onclick="FindText(Urlwolf)">
+					<input type="button" value="Wikipedia" onclick="FindText(Urlwiki)">
+					<input type="button" value="Bing" onclick="FindText(Urlbing)">
+					<input type="button" value="Excite" onclick="FindText(Urlex)">
+
+
+				</form>
+			</div>
+	    <h4>&nbsp;</h4>
+	  <div class="footer">
+	    <p><em>Любое копирование материалов с этого сайта запрещено</em></p>
+	  <!-- end .footer --></div>
+	  <!-- end .container --></div>
+</body>
+</html>

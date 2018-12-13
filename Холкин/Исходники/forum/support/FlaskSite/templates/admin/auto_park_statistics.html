@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+	<title>List.js example</title>
+	<link rel="stylesheet" type="text/css" href="../static/c3.css">
+  <link rel="stylesheet" type="text/css" href="../static/statistics.css">
+</head>
+<body>
+	<h2>Автопарк</h2>
+	<div id="tabs-panel" style="width:300px;">
+		<div class="tab-button active" data-tab="chart">
+			Chart
+		</div>
+		<div class="tab-button" data-tab="data">
+			Table
+		</div>
+	</div>
+
+	<div id="tabs">
+		<div class="tab active" id="chart"></div>
+		<div class="tab" id="data">
+			<input class="search" placeholder="Search" />
+			<table border="1" cellspacing="0" cellpadding="3" width="500">
+				<thead>
+					<tr>
+						<th>
+							<button class="sort" data-sort="Brand">Sort by Brand</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Model">Sort by Model</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Number">Sort by Number</button>
+						</th>
+            <th>
+							<button class="sort" data-sort="Free">Sort by Free</button>
+						</th>
+					</tr>
+				</thead>
+				<!-- IMPORTANT, class="list" have to be at tbody -->
+				<tbody class="list"></tbody>
+			</table>
+		</div>
+	</div>
+
+	<script>
+
+    {% autoescape false %}
+	   var data = {{cars_data}};
+    {% endautoescape %}
+
+
+	document.querySelectorAll('.tab-button').forEach(function(element){
+		element.addEventListener('click', function(event){
+			var clickedElement = event.currentTarget
+				hasActiveClass = clickedElement.classList.contains('active')
+			if (!hasActiveClass) {
+				document.querySelectorAll('.tab-button').forEach(function(element){
+					element.classList.remove('active')
+				});
+				clickedElement.classList.add('active')
+
+				document.querySelectorAll('.tab').forEach(function(element){
+					element.classList.remove('active');
+				});
+				var tab = clickedElement.getAttribute('data-tab');
+				document.querySelector('#'+tab).classList.add('active')
+			}
+		});
+	});
+
+	</script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="../static/c3.js"></script>
+    <script>
+    var chart = c3.generate({
+      {% autoescape false %}
+      data: {
+        columns: {{cars_num}},
+
+      {% endautoescape %}
+
+      type: 'donut',
+        onmouseover: function (d, i) { console.log("onmouseover", d, i, this); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i, this); },
+        onclick: function (d, i) { console.log("onclick", d, i, this); },
+        order: null // set null to disable sort of data. desc is the default.
+      },
+      donut: {
+        title: "Автопарк",
+        width: 80
+      }
+    });
+    </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+	<script>
+
+  var options = {
+		item: "<tr><td><span class='Brand'></span></td><td><span class='Model'></span></td><td><span class='Number'></span></td><td><span class='Free'></span></td></tr>",
+		valueNames: ['Brand', 'Model', 'Number', 'Free']
+	};
+	var dataList = new List('data', options, data);
+	</script>
+</body>
+{% endblock %}

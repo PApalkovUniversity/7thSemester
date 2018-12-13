@@ -1,0 +1,300 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("OpenSans-Light.ttf");
+}
+
+@font-face {
+  font-family: "OswaldLight";
+  src: url("Oswald-Light.ttf");
+}
+
+@font-face {
+  font-family: "OswaldMedium";
+  src: url('Oswald-Medium.ttf');
+}
+
+body {
+	color: #FFF;
+  background-image: url('images/backgroung.jpg');
+}
+
+ul, ol, dl {
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	padding-right: 15px;
+	padding-left: 15px;
+	font-size: 100%;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: OswaldMedium;
+	font-size: 24px;
+  text-align: center;
+}
+
+h3 {
+  margin: 2px;
+}
+
+pp {
+  text-align: right;
+}
+
+.header a {
+  color: white;
+  font-family: OswaldMedium;
+  font-size:24px;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+
+p, a {
+	font-family:OpenSans;
+}
+
+p {
+  text-align: justify;
+}
+
+a img {
+	border: none;
+}
+
+a:link {
+	color:white;
+	text-decoration: underline;
+}
+
+a:visited {
+	color: white;
+	text-decoration: underline;
+}
+
+a:hover, a:active, a:focus {
+	text-decoration: none;
+}
+
+.container {
+	background-color:rgba(0,0,0,0.6);
+	width: 80%;
+	max-width: 1260px;
+	min-width: 780px;
+	margin: 0 auto;
+	padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.container img {
+  margin: auto;
+}
+
+
+.header {
+	font-family: OswaldMedium;
+	text-align:center;
+	font-size: 50pt;
+	padding: 10px;
+	padding-bottom: 20px;
+}
+
+
+.sidebar1 {
+	float: left;
+	width: 35%;
+	padding-bottom: 10px;
+}
+.content {
+	padding: 10px 0;
+	width: 65%;
+	float: left;
+}
+
+
+.content ul, .content ol {
+	padding: 0 15px 15px 40px;
+}
+
+/* ~~ Стили списка навигации (можно убрать, если решено использовать готовое подменю, например Spry) ~~ */
+ul.nav {
+	list-style: none; /* удаляет маркер списка */
+margin-bottom: 15px; /* создает пространство между навигацией по содержимому ниже */
+	border-radius: 10px;
+	text-align:center;
+
+
+}
+ul.nav li {
+	margin: 10px;
+	padding: 0px;
+	color:rgba(0,153,255,1);
+}
+
+ul.nav a, ul.nav a:visited { /* группировка этих селекторов гарантирует, что ссылки будут выглядеть как кнопки даже после того, как пользователь перейдет по ним */
+	padding: 5px 5px 5px 15px;
+	display: block; /* наделяет ссылку свойствами блока, из-за чего она заполняет весь содержащий ее элемент LI. При этом вся область реагирует на щелчок мышью. */
+	text-decoration: none;
+	background-color:rgba(98,179,255,0.7);
+	color: #FFF;
+	border-radius: 10px;
+	padding: 10px;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* изменяет цвет текста и фона при навигации с помощью клавиатуры и мыши */
+	background-color: #6F7D94;
+	color: #FFF;
+}
+
+/* ~~ Нижний колонтитул ~~ */
+.footer {
+	padding: 10px;
+	clear: both;
+	text-align: center;
+	font-family: "Open Sans";
+	color: #FFF;
+	background:rgba(0,0,0,0.6);
+	border-radius: 10px;
+}
+
+.footer p {
+  text-align: center;
+}
+
+
+.fltrt {
+	float: right;
+	margin-left: 8px;
+}
+.fltlft {
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat {
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+dt {
+  text-align: center;
+  font-family: OswaldMedium;
+  font-size: 15pt;
+  padding: 10px;
+  padding-bottom: 5px;
+  color: white;
+}
+
+dd {
+  align-self: center;
+  margin-left: 0;
+  margin-bottom: 10px;
+}
+
+input {
+
+}
+
+.searchline {
+  font-size: 20pt;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.search {
+  align-items: center;
+  float:none;
+}
+
+.container .search {
+    float: center;
+}
+
+.header a:link {
+  color: white;
+	text-decoration: none;
+  font-size: 50pt;
+}
+
+.header a:visited {
+	text-decoration: none;
+  color: white;
+}
+
+.header a:hover, .header a:active, .header a:focus {
+	text-decoration: none;
+}
+
+.slick-slider {
+  background: #eee;
+  /* margin-top: 20px; */
+  margin: 0px;
+  max-width: 550px;
+  padding: 0px;
+}
+.slick-slide {
+  width: 240px;
+  color: black;
+}
+
+.good-demo img{
+    width: 480px;
+    height: auto;
+    padding: 0px;
+    marging: 0px;
+}
+
+.small_info_window {
+  width: 300px;
+  height: auto;
+  background-color: rgba(0,0,0,0.9);
+  color: white;
+  font-family: OpenSans;
+  border-radius: 5px;
+}
+
+.button {
+  font-family: OswaldMedium;
+  text-align: center;
+  height: 50px;
+}
+
+.button a {
+  color: white;
+  font-size: 15pt;
+  margin: 30px;
+  padding: 20px;
+  background-color: rgba(98,179,255,0.8);
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.button a:hover {
+  background-color: #6F7D94;
+}
+
+.post{
+  max-width: 800px;
+  margin: auto;
+}
+
+h1 a, h2 a {
+  text-decoration: none;
+	font-family: OswaldMedium;
+	font-size: 24px;
+  text-align: center;
+}
+
+h1 a:link , h2 a:link{
+  text-decoration: none;
+}

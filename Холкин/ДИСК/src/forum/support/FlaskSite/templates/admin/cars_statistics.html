@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+	<title>List.js example</title>
+	<link rel="stylesheet" type="text/css" href="../static/c3.css">
+  <link rel="stylesheet" type="text/css" href="../static/statistics.css">
+</head>
+<body>
+	<h2>Автомобили</h2>
+	<div id="tabs">
+		<div class="tab active" id="data">
+			<input class="search" placeholder="Search" />
+			<table border="1" cellspacing="0" cellpadding="3" width="1100">
+				<thead>
+					<tr>
+						<th>
+							<button class="sort" data-sort="Brand">Sort by Brand</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Model">Sort by Model</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Passengers Max.">Sort by Passengers Max.</button>
+						</th>
+            <th>
+							<button class="sort" data-sort="Power">Sort by Power</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Drive">Sort by Drive</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Hour price">Sort by Hour price</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Day price">Sort by Day price</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Night price">Sort by Night price</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Full day price">Sort by Full day price</button>
+						</th>
+					</tr>
+				</thead>
+				<!-- IMPORTANT, class="list" have to be at tbody -->
+				<tbody class="list"></tbody>
+			</table>
+		</div>
+	</div>
+
+	<script>
+
+    {% autoescape false %}
+	   var data = {{cars_data}};
+    {% endautoescape %}
+
+
+	document.querySelectorAll('.tab-button').forEach(function(element){
+		element.addEventListener('click', function(event){
+			var clickedElement = event.currentTarget
+				hasActiveClass = clickedElement.classList.contains('active')
+			if (!hasActiveClass) {
+				document.querySelectorAll('.tab-button').forEach(function(element){
+					element.classList.remove('active')
+				});
+				clickedElement.classList.add('active')
+
+				document.querySelectorAll('.tab').forEach(function(element){
+					element.classList.remove('active');
+				});
+				var tab = clickedElement.getAttribute('data-tab');
+				document.querySelector('#'+tab).classList.add('active')
+			}
+		});
+	});
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+	<script>
+
+
+	var options = {
+		item: "<tr><td><span class='Brand'></span></td><td><span class='Model'></span></td><td><span class='Passengers Max.'></span></td><td><span class='Power'></span></td><td><span class='Drive'></span></td><td><span class='Hour price''></span></td><td><span class='Day price''></span></td><td><span class='Night price''></span></td><td><span class='Full day price''></span></td></tr>",
+		valueNames: ['Brand', 'Model', 'Passengers Max.', 'Power', 'Drive', 'Hour price', 'Day price', 'Night price', 'Full day price']
+	};
+
+	var dataList = new List('data', options, data);
+	</script>
+</body>
+{% endblock %}

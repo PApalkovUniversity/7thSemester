@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="{{url_for('add_old' , post_id=article[0])}}" method=post class=create>
+      <dl>
+        <dt>Author</dt>
+        <dd><input type=text size=50 name=author value="{{ article[1] }}"></dd>
+        <dt>Text</dt>
+        <dd><textarea name=text rows=20 cols=100>{{ article[2] }}</textarea></dd>
+        <br/>
+        <dd><input type=submit value=Сохранить><dd>
+      </dl>
+    </form>
+{% endblock %}

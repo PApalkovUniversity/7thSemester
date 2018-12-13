@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Курс валют</title>
+    <link href="../static/template.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+
+            var socket = io.connect('http://127.0.0.1:5003');
+            socket.on('connect', function() {
+                socket.emit('my_event');
+            });
+
+
+            socket.on('price_responce', function(dict_prices) {
+              $('#price').text('')
+              for (const [key, value] of Object.entries(dict_prices)) {
+                console.log(key, value);
+                $('#price').append('<br>' + $('<div/>').text(key+ " : " + value).html());
+              }
+
+              Data = new Date();
+			        hour = Data.getHours();
+			        minute = Data.getMinutes();
+			        seconds = Data.getSeconds();
+              $('#time').text(hour + " : " + minute + " : " + seconds)
+            });
+        });
+    </script>
+
+</head>
+  <body>
+	<div class="container">
+  	  <div class="header"><a href="../../home.html">ПРИРОДА РОССИИ</a></div>
+
+      <h1>Курсы валют:</h1>
+      <div id="price" class="price" align="center"></div>
+      </br>
+      </br>
+
+      <h1>Время обновления:</h1>
+      <div id="time" class="time" align="center"></div>
+      <br/>
+      <br/>
+
+	  <div class="footer">
+	    <p><em>Любое копирование материалов с этого сайта запрещено</em></p>
+	  <!-- end .footer --></div>
+	  <!-- end .container --></div>
+  </body>
+</html>

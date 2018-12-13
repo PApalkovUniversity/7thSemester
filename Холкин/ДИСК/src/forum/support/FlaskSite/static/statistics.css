@@ -1,0 +1,58 @@
+#tabs-panel {
+  width: 200px;
+}
+#tabs-panel:before,
+#tabs-panel:after {
+  content: '';
+  display: table;
+}
+#tabs-panel:after {
+  clear: both;
+}
+.tab-button {
+  border: 1px solid #ddd;
+  border-bottom: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  float: left;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  margin: 0 2px;
+  padding: 5px;
+  text-align: center;
+  width:94px;
+
+  transition: all .3s ease-in-out;
+}
+.tab-button.active {
+  background: #eee;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.tab-button:hover {
+  background: #eee
+}
+#tabs {
+  border-top: 1px solid #eee;
+  position: relative;
+  width: 100%;
+}
+.tab {
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 0;
+
+  transition: opacity .3s ease-in-out;
+}
+.tab.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+h2 {
+  color: black;
+}

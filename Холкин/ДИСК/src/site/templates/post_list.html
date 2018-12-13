@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for post in articles %}
+        <div class="post">
+            <h2><a href="{{url_for('single_post', post_id=post[0])}}">{{ post[1] }}</a></h2>
+            <p>{{ post[2] }}</p>
+        </div>
+    {% endfor %}
+
+    <br/>
+    <div class="button">
+      <a href="{{url_for('create_post')}}">Добавить</a>
+    </div>
+{% endblock %}

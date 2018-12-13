@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Личный сайт</title>
+	<link href="template.css" rel="stylesheet" type="text/css">
+	<script>
+
+	UrlYandex="http://www.yandex.ru/yandsearch?rpt=rad&text=";
+	UrlGoogle="http://www.google.ru/search?hl=ru&newwindow=1&q=";
+	Urlmail_ru="http://go.mail.ru/search?fm=1&rf=e.mail.ru&q=";
+	function FindText(Url){
+		var FullUrl=Url+document.find.searchtext.value;
+
+		if (document.find.newwin.checked) {
+			var FindWin=window.open(FullUrl);
+		} else {
+			location.href = FullUrl; }
+		}
+</script>
+</head>
+
+<body>
+	<div class="container">
+	  <div class="header"><a href="home.html">ПРИРОДА РОССИИ</a></div>
+			<div class="search" align="center">
+				<form name="find">
+					<h1>Поиск</h1> <br>
+					<dd><input class="searchline" type=text size=35 name=searchtext></dd>
+					<input type="checkbox" name="newwin">Открыть в новом окне<br> <br>С помощью поисковой системы:<br >
+
+					<input type="button" value="Yandex" onClick="FindText(UrlYandex)">
+					<input type="button" value="Google" onClick="FindText(UrlGoogle)">
+					<input type="button" value="Mail_ru" onClick="FindText(Urlmail_ru)">
+				</form>
+			</div>
+	    <h4>&nbsp;</h4>
+	  <div class="footer">
+	    <p><em>Любое копирование материалов с этого сайта запрещено</em></p>
+	  <!-- end .footer --></div>
+	  <!-- end .container --></div>
+</body>
+</html>

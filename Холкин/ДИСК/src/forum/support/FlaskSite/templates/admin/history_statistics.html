@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="../static/c3.css">
+  <link rel="stylesheet" type="text/css" href="../static/statistics.css">
+</head>
+<body>
+	<h2>История заказов</h2>
+	<div id="tabs-panel">
+		<div class="tab-button active" data-tab="chart">
+			Chart
+		</div>
+		<div class="tab-button" data-tab="data">
+			Table
+		</div>
+	</div>
+
+	<div id="tabs">
+		<div class="tab active" id="chart"></div>
+		<div class="tab" id="data">
+			<input class="search" placeholder="Search" />
+			<table border="1" cellspacing="0" cellpadding="3" width="900">
+				<thead>
+					<tr>
+						<th>
+							<button class="sort" data-sort="Number">Sort by Number</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Auto number">Sort by Auto number</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Driving">Sort by Driving licence</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Date">Sort by Date</button>
+						</th>
+            <th>
+							<button class="sort" data-sort="Cost">Sort by Cost</button>
+						</th>
+						<th>
+							<button class="sort" data-sort="Passport">Sort by Passport number</button>
+						</th>
+					</tr>
+				</thead>
+				<!-- IMPORTANT, class="list" have to be at tbody -->
+				<tbody class="list"></tbody>
+			</table>
+		</div>
+	</div>
+
+	<script>
+
+    {% autoescape false %}
+	   var data = {{hist_data}};
+    {% endautoescape %}
+
+
+	document.querySelectorAll('.tab-button').forEach(function(element){
+		element.addEventListener('click', function(event){
+			var clickedElement = event.currentTarget
+				hasActiveClass = clickedElement.classList.contains('active')
+			if (!hasActiveClass) {
+				document.querySelectorAll('.tab-button').forEach(function(element){
+					element.classList.remove('active')
+				});
+				clickedElement.classList.add('active')
+
+				document.querySelectorAll('.tab').forEach(function(element){
+					element.classList.remove('active');
+				});
+				var tab = clickedElement.getAttribute('data-tab');
+				document.querySelector('#'+tab).classList.add('active')
+			}
+		});
+	});
+
+	</script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+			<script src="../static/c3.min.js"></script>
+			<script>
+				var chart = c3.generate({
+					axis: {
+						x: {
+							label: 'Месяц',
+						},
+						y: {
+							label: 'Количество заказов'
+						}
+					},
+					data: {
+						{% autoescape false %}
+						columns: {{all_years}},
+						{% endautoescape %}
+					}
+				});
+			</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+	<script>
+
+  var options = {
+		item: "<tr><td><span class='Number'></span></td><td><span class='Auto number'></span></td><td><span class='Driving'></span></td><td><span class='Date'></span></td><td><span class='Cost'></span></td><td><span class='Passport'></span></td></tr>",
+		valueNames: ['Number', 'Auto number', 'Driving', 'Date', 'Cost', 'Passport']
+	};
+	var dataList = new List('data', options, data);
+	</script>
+</body>
+{% endblock %}

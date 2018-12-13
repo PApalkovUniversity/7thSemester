@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>CarSharing</title>
+        <link rel="stylesheet" href="../static/style.css">
+        <meta http-equiv="Cache-Control" content="private">
+    </head>
+    <body style="background-image: url('../static/img/4.jpg');">
+
+      <div class="page-header-home">
+          <h1><a href="/">CarSharing</a></h1>
+      </div>
+
+      <div class="make_order">
+        <h2 style="color:black;"> Регистрация </h2>
+        <form action="{{ url_for('add_clients') }}" method=post class=create>
+          <dl>
+            <dt>Фамилия</dt>
+            <dd><input type=text size=35 name=surname placeholder="Иванов" required></dd>
+
+            <dt>Имя</dt>
+            <dd><input type=text size=35 name=name placeholder="Иван" required></dd>
+
+            <dt>Отчество</dt>
+            <dd><input type=text size=35 name=midname placeholder="Иванович" required></dd>
+
+            <dt>Дата рождения</dt>
+            <dd><input id="birthdate" pattern= "\d{4}(-)\d{2}(-)\d{2}" type=text
+              size=35 name=birthdate placeholder="2000-01-31" required></dd>
+
+            <dt>Город</dt>
+            <dd><input type=text size=35 name=city placeholder="Москва" required></dd>
+
+            <dt>Серия/Номер паспорта</dt>
+            <dd><input id="passport" pattern= "\d{10}" type=text
+              size=35 name=passport placeholder="0123456789" required></dd>
+
+            <dt>Серия/номер ВУ</dt>
+            <dd><input id="driving_l" pattern= "\d{10}" type=text
+              size=35 name=driving_l placeholder="0123456789" required></dd>
+
+            <dt>Логин</dt>
+            <dd><input type=text size=35 name=username placeholder="Username" required></dd>
+
+            <dt>Пароль</dt>
+            <dd><input type=password size=35 name=password placeholder="Password" required></dd>
+
+            <script>
+              document.getElementById('birthdate').validity.patternMismatch;
+              document.getElementById('passport').validity.patternMismatch;
+              document.getElementById('driving_l').validity.patternMismatch;
+            </script>
+
+            <br/>
+            <dd><input type=submit value=Сохранить><dd>
+
+          </dl>
+        </form>
+      </div>
+
+  </body>
+</html>

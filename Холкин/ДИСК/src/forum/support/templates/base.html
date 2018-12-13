@@ -1,0 +1,28 @@
+
+<html>
+    <head>
+        <title>CRUD</title>
+        <link href="/static/template.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+      <div class="container">
+        <div class="header"><a href="/pavel/home">ПРИРОДА РОССИИ</a></div>
+          <div>
+              <h1><a href="/pavel/notes">ЗАМЕТКИ</a></h1>
+          </div>
+          <div>
+              <div class="row">
+                  <div class="col-md-8">
+                  {% block content %}
+                  {% endblock %}
+                  </div>
+              </div>
+          </div>
+        <div class="footer">
+          <p><em>Любое копирование материалов с этого сайта запрещено</em></p>
+        </div>
+      </div>
+
+  </body>
+</html>
